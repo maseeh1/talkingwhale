@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Whale</title>
+    <style>
+body{
+        text-align: center;
+        font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+        font-size: 16px;
+}
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 6px 0;
+    box-sizing: border-box;
+    border: none;
+    background-color: #0093ba;
+    color: white;
+    font-size: 16px;
+}
+.class1 {
+    width: 100%;
+}
+img{
+    position: relative;
+    display: inline-block; 
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+} 
+::placeholder{
+    color: #c1c1c1;
+}
+.fixedimage {
+    position: relative;
+    top: 20px;
+}
+.textonimage{
+    position: absolute;
+    text-align: left;
+    top: 10%;
+    left: 7%;
+    width: 33%;
+    font-size: 16px;
+}
+@media only screen and (min-width: 900px) {
+    img {
+        width: 50%;
+    }
+    .textonimage{
+        width: 16%;
+        top: 10%;
+        left: 28%;
+    }
+    input{
+        width: 50%;
+    }
+}
+    </style>
+</head>
+<body> 
+
+    <h1>Whale Language</h1>
+    <p>Whales speak in vowels (A, I, O, U, E)! They also double their "E"s and "U"s. For example "Hello" translates to "EEO"!</p>
+    <input type="text" placeholder="Try it! type a sentence in here" id="inputFromInput" onchange="convert()" oninput="convert()">
+    <div class="fixedimage">
+        <img src="talkingwhale.jpg">
+        <div class="textonimage" id="result1"></div>
+    </div>
+    <script>
+        function convert() {
+        let input = document.getElementById("inputFromInput").value;
+        let vowels = ['A', 'I', 'O', 'U', 'E', ' ']
+        let result = []
+        for(let i = 0; i < input.length; i++){
+            for(let j = 0; j < vowels.length; j++){
+                if(input.toUpperCase()[i]===vowels[j]){
+                    result.push(vowels[j]);
+                    if(vowels[j] === 'E' || vowels[j] === 'U') {
+                        result.push(vowels[j])
+                    }
+                }
+            }
+        }
+        console.log(result.join(''))
+        document.getElementById("result1").innerHTML = result.join('')+'!';
+        let resultLength = document.getElementById("result1").innerHTML.length;
+        console.log(resultLength);
+        if (window.innerWidth < 350) {
+            if(resultLength < 14){
+            }
+            else if(resultLength < 21){
+                document.getElementById("result1").style.fontSize = "12px";
+            }
+            else if(resultLength < 39){
+                document.getElementById("result1").style.fontSize = "9px";
+            }
+            else{
+                alert("Too much talk for this whale!");
+            }
+        }
+        else if (window.innerWidth < 450) {
+            if(resultLength < 21){
+            }
+            else if(resultLength < 30){
+                document.getElementById("result1").style.fontSize = "12px";
+            }
+            else if(resultLength < 62){
+                document.getElementById("result1").style.fontSize = "9px";
+            }
+            else{
+                alert("Too much talk for this whale!");
+            }
+        }
+        else if (window.innerWidth < 550) {
+            if(resultLength < 31){
+            }
+            else if(resultLength < 60){
+                document.getElementById("result1").style.fontSize = "12px";
+            }
+            else if(resultLength < 160){
+                document.getElementById("result1").style.fontSize = "9px";
+            }
+            else{
+                alert("Too much talk for this whale!");
+            }
+        }
+    }
+
+    </script>
+</body>
+</html>
